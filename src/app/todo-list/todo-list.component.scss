@@ -1,0 +1,121 @@
+.container {
+    // margin: 35px;
+    padding-top: 50px;
+    // background-color: #f5f5f5;
+    min-height: 300px;
+    .list {
+        width: 100%;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
+        .item {
+            background-color: transparentize($color: #000000, $amount: 0.3);
+            flex:1;
+            min-height: 60px;
+            margin: 5px;
+            border: 0.5px solid gray;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            padding: 5px;
+            align-items: center;
+            justify-content: space-between;
+            &:hover {
+                background-color: #000000;
+            }
+            
+            .groupName {
+                flex:3;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                flex-direction: column;
+                color:#fff;
+            }
+
+            .groupAction {
+                flex:0.5;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding-left: 15px;
+                padding-right: 15px;
+                .actionItem {
+                    flex:1;
+                }
+            }
+        }
+    }
+}
+
+.margin {
+    margin: 5px;
+}
+
+.name {
+    font-weight: 550;
+}
+
+.btn {
+    background-color: #fff;
+    border: 0.4px solid gray;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.search_bar {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    min-height: 20px;
+    align-items: center;
+    background-color: #fff;
+    margin: 20px;
+    margin-left: 5px;
+    border-radius: 5px;
+    padding: 3px;
+    input {
+        background-color:transparent;
+        border: none;
+        outline: none;
+        flex-grow: 1;
+        font-weight: 550;
+        font-size: medium;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-height: 20px;
+    align-items: flex-start;
+    margin: 20px;
+    margin-left: 5px;
+    justify-content: space-evenly;
+    label {
+        color: #fff;
+    }
+    input {
+        margin: 5px;
+        margin-left: 0;
+        border-radius: 5px;
+
+    }
+    button {
+        padding: 5px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        color:#fff;
+        margin: 15px;
+        margin-right: 30px;
+    }
+}

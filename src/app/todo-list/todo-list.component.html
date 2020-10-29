@@ -1,0 +1,78 @@
+<p>todo-list works!</p>
+
+<div class="container">
+  <div class="spinner-border text-primary" role="status" *ngIf="state.loading">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="search_bar">
+    <i class="fa fa-search" style="margin-right: 5px" aria-hidden="true"></i>
+    <input type="text" name="" id="" (input)="onChange($event.target.value)" />
+  </div>
+
+  <form
+    novalidate
+    (ngSubmit)="onSubmit($event)"
+    [formGroup]="createFrom"
+    class="form"
+  >
+  <label for="name">Task name</label>
+  <input type="text" name="name" id="" [formControlName]="'name'">
+  <label for="description">Description</label>
+  <input type="text" name="description" [formControlName]="'description'" id="">
+  <div style="width: 100%;display: flex;align-items: center;justify-content: center;" >
+    <button type="submit" class="btn-success" [disabled]="createFrom.invalid">Add task</button>
+  </div>
+</form>
+<p *ngIf="expandItems.length===0" style="color: #fff;">
+  You dont have any task for today
+</p>
+  <div class="list">
+    <div class="item" *ngFor="let item of items | async" [ngStyle]="item.status? {'border-color' : 'green'} : {}">
+      <div
+        class="groupName"
+        [ngClass]="item.status ? 'text-success complete' : ''"
+        
+      >
+        <span class="name">{{ item.name }}</span>
+        <div class="margin"></div>
+        <span *ngIf="item.description?.length < textLength">
+          {{ item.description }}
+        </span>
+        <span *ngIf="item.description?.length >= textLength">
+          <span *ngIf="item.isExpan">
+            {{ item.description }}
+            <span style="cursor: pointer" href="" (click)="transition(item.id)">
+              Show less 🔺
+            </span>
+          </span>
+          <span *ngIf="!item.isExpan">
+            {{ getSmallDecription(item.description) }}
+            <span style="cursor: pointer" href="" (click)="transition(item.id)">
+              Show more 🔻
+            </span>
+          </span>
+        </span>
+        <div class="margin"></div>
+        <span class="name">Last modified :  {{ item.changedDate | date : 'dd/MM/yyyy hh:mm:ss' }}</span>
+      </div>
+      <div class="groupAction">
+        <button
+          *ngIf="!item.status"
+          class="btn"
+          (click)="toggleCompleteTask(item.id, item.status)"
+        >
+          ✔
+        </button>
+        <button
+          *ngIf="item.status"
+          class="btn"
+          (click)="toggleCompleteTask(item.id, item.status)"
+        >
+          🚫
+        </button>
+        <div class="margin" style="margin: 5px"></div>
+        <button class="btn" (click)="deleteTask(item.id)">❌</button>
+      </div>
+    </div>
+  </div>
+</div>
